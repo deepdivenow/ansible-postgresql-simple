@@ -1,0 +1,15 @@
+
+- name: PostgreSQL | Add PostgreSQL repository
+  yum:
+    name: "{{ postgresql_yum_repository_url }}"
+    state: present
+
+- name: PostgreSQL | Install PostgreSQL
+  yum:
+    name: "{{ item }}"
+    state: present
+  environment: "{{ postgresql_env }}"
+  with_items:
+    - "postgresql{{ postgresql_version_terse }}-server"
+    - "postgresql{{ postgresql_version_terse }}"
+
